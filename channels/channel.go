@@ -2,17 +2,22 @@ package main
 
 import "fmt"
 
+func produce(ch chan<- int) {
+	for i := 1; i <= 5; i++ {
+		ch <- i
+	}
+	close(ch)
+}
+
+// using a channel to communicate between a producer and a consumer.
+
+func consume(ch <-chan int) {
+	for i := range ch {
+		fmt.Println(i)
+	}
+}
 func main() {
-	ch := make(chan string, 3)
-
-	// special variable that is use to exchange information among goroutines.
-
-	ch <- "this is channel 1"
-
-	ch <- "this is channel 1"
-
-	ch <- "this is channel 1"
-	fmt.Println(ch)
-	fmt.Println(ch)
-	fmt.Println(ch)
+	ch := make(chan int)
+	go produce(ch)
+	consume(ch)
 }
