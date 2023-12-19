@@ -28,6 +28,27 @@ func totalMileage(m []MotorVehicle) {
 	}
 	fmt.Printf("Total Mileage per month %f km/1", tm)
 }
+
+type Employee interface {
+	GetName() string
+}
+type Engineer struct {
+	Name string
+}
+type Finance struct {
+	Name string
+}
+
+func (e Engineer) GetName() string {
+	return "employee name:" + e.Name
+}
+func (f Finance) GetName() string {
+	return "employee name:" + f.Name
+}
+func EmployeeDetails(e Employee) {
+	fmt.Println(e.GetName())
+}
+
 func main() {
 	b1 := Bmw{
 		distance:     167.9,
@@ -42,4 +63,14 @@ func main() {
 	person := []MotorVehicle{b1, a1}
 	totalMileage(person)
 
+	// declare an interface employee.
+
+	engineer := Engineer{
+		Name: "Saloni",
+	}
+	EmployeeDetails(engineer)
+	finance := Finance{
+		Name: "Saroha",
+	}
+	EmployeeDetails(finance)
 }
