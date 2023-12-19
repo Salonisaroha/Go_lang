@@ -20,4 +20,13 @@ func main() {
 	ch := make(chan int)
 	go produce(ch)
 	consume(ch)
+
+	//Another channel
+
+	data := make(chan string)
+	go func() {
+		data <- "hey champ"
+	}()
+	c := <-data
+	fmt.Println(c)
 }
