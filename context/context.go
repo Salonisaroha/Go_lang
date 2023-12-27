@@ -28,5 +28,6 @@ func main() {
 		fmt.Printf("error reading response body")
 	}
 
+	
 	fmt.Printf("data of size %d\n", len(data))
 }
