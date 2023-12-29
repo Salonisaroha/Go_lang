@@ -27,8 +27,8 @@ func main() {
 	//Reinitialize the value
 
 	v := Company()
-	fmt.Println(v())
-	fmt.Println(v())
-	fmt.Println(v())
+	fmt.Println(v()) //output is 1
+	fmt.Println(v()) //output is 2
+	fmt.Println(v()) //output is 3
 
 }
