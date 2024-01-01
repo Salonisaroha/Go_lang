@@ -3,13 +3,25 @@ package main
 import (
 	"fmt"
 	"math/rand"
+
 	"sync"
 	"time"
 )
 
+//Every process which run concurrently in golang called goroutines.
+//light weighted thread.
+//creation cost of goroutines is very small as compared to thread.
+//Every program had at least single goroutine called main function.
+
 func DoWork() int {
 	time.Sleep(time.Second)
 	return rand.Intn(10)
+}
+func printSomething(value string) {
+	for {
+		fmt.Println(value)
+		time.Sleep(time.Millisecond * 500)
+	}
 }
 
 func main() {
@@ -35,5 +47,8 @@ func main() {
 		fmt.Printf("%d\n", x)
 
 	}
+
+	go printSomething("one") // here go routine is used by which we get one and two after one another.If we remove go then only one is print two is not print
+	printSomething("two")
 
 }
