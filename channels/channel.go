@@ -27,6 +27,14 @@ func receiving(s chan string) {
 func convert(s chan<- string) {
 	s <- "some values"
 }
+func sum(intArray []int, ch chan int) {
+	result := 0
+	var val int
+	for _, val = range intArray {
+		result += val
+	}
+	ch <- result
+}
 func main() {
 	ch := make(chan int)
 	go produce(ch)
@@ -47,8 +55,8 @@ func main() {
 	chanl1 := make(chan string)
 	chanl2 := make(chan string)
 
-	//chanl1:= make(chan<- string) This is only send only channel.
-	//chanl1 := make(<-chan string) This is receive only channel.
+	//chanl1 := make(chan<- string)  This is only send only channel.
+	//chanl1 := make(<-chan string)  This is receive only channel.
 
 	go sending(chanl1)
 	valueFromChanel := <-chanl1
@@ -56,9 +64,14 @@ func main() {
 	go receiving(chanl2)
 	chanl2 <- valueFromChanel
 
-	// Creating a unidirectional channel
+	//Creating a unidirectional channel
 
 	chanl := make(chan string)
 	go convert(chanl)
 	fmt.Println(<-chanl)
+
+	arr := []int{10, 20, 30, 40, 50}
+	math := make(chan int)
+	go sum(arr, math)
+	fmt.Println(<-math)
 }
