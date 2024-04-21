@@ -22,9 +22,10 @@ func (s *Server) GetUserFromDB() string {
 	}
 	return s.db.user
 }
-func doSomething(data *Bigdata) {
 
-}
+// func doSomething(data *Bigdata) {
+
+// }
 
 // if player is not a pointer we are adjusting the copy of the player
 // not the actual player
