@@ -18,13 +18,44 @@ func DoWork() int {
 	return rand.Intn(10)
 }
 func printSomething(value string) {
-	for {
+	for i := 0; i < 5; i++ {
 		fmt.Println(value)
 		time.Sleep(time.Millisecond * 500)
 	}
 }
 
+func hello(val *sync.WaitGroup) {
+
+	for i := 0; i < 4; i++ {
+		defer val.Done()
+		fmt.Println("Hello everyone")
+	}
+}
+func goodBye(val *sync.WaitGroup) {
+	defer val.Done()
+	fmt.Println("Goodbye")
+}
+
+func fetchResource() string {
+	time.Sleep(time.Second * 2)
+	return "some result"
+}
 func main() {
+
+	// Anonymous function
+	go func() {
+		fetchResource() // It does not return any value . So, here anonymous function is used.
+	}()
+	result := fetchResource()
+	fmt.Println(result)
+	go fetchResource()
+
+	var val sync.WaitGroup
+	val.Add(1)
+	go hello(&val)
+	go goodBye(&val)
+
+	val.Wait()
 	dataChan := make(chan int)
 
 	go func() { // go-routine that's running on the background thread
