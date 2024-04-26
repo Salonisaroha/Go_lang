@@ -36,6 +36,28 @@ func sum(intArray []int, ch chan int) {
 	ch <- result
 }
 func main() {
+	msgCh := make(chan string, 128)
+	msgCh <- "A"
+	msgCh <- "B"
+	msgCh <- "C"
+	msgCh <- "D"
+	msgCh <- "E"
+	msgCh <- "F"
+	for err, val := range <-msgCh {
+		fmt.Printf("Value of different channels is %v and the value is %v\n", val, err)
+	}
+	resultCh := make(chan string) //-> unbuffered channel
+	// -> buffered channel make(chan string, 10), if size is given then it is buffered channel.
+
+	// A channel is always blocked, if it is full.
+	// We can solved it by buffering the channel.
+
+	// Below output is print because we use anonymous function.
+	go func() {
+		result := <-resultCh
+		fmt.Println(result)
+	}()
+	resultCh <- "Something is happen"
 	ch := make(chan int)
 	go produce(ch)
 	consume(ch)
