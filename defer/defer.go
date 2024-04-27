@@ -14,9 +14,9 @@ func myDefer() {
 
 // defer uses last in first out approach.
 func main() {
-	// defer fmt.Println("world")
-	// defer fmt.Println("today I am learning goLang")
-	// fmt.Println("Hello !")
+	defer fmt.Println("world")
+	defer fmt.Println("today I am learning goLang")
+	fmt.Println("Hello !")
 	fmt.Println("Printing...")
 	printData()
 	fmt.Println("Printing Done!")
