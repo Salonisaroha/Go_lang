@@ -15,7 +15,7 @@ type UserProfile struct {
 }
 
 type Response struct {
-	data interface{}
+	data any
 	err  error
 }
 
