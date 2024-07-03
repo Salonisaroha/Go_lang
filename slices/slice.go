@@ -70,4 +70,25 @@ func main() {
 	response := bytes.Trim(valuesOfSlice, "!s")
 	fmt.Printf("\n slice with new value are :- %s", response)
 
+	my_arr1 := [10]string{"My", "name", "is", "Saloni Saroha", "I", "doing", "B.tech"}
+
+	fmt.Println("my_arr1 is :- ", my_arr1)
+
+	slice1 := my_arr1[1:6]
+
+	fmt.Println("My slice is :- ", slice1)
+
+	fmt.Printf("Length of slice is :- %d ", len(slice1))
+	fmt.Println("Capacity of slice is :- ", cap(slice1))
+
+	arr := [4]int{1, 2, 3, 4}
+
+	my_slice := arr[0:]
+	my_slice1 := arr[1:2]
+	my_slice2 := arr[1:]
+
+	fmt.Println("value of my_slice is :- ", my_slice)
+	fmt.Println("value of my_slice1 is :- ", my_slice1)
+	fmt.Println("value of my_slice2 is :- ", my_slice2)
+
 }
