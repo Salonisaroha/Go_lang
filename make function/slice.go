@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"sort"
 )
@@ -44,4 +45,32 @@ func main() {
 
 	fmt.Println(sl1)
 	fmt.Println(sl2)
+
+	res1 := bytes.Trim([]byte("****Welcome to GeeksforGeeks****"), "*")
+	res2 := bytes.Trim([]byte("!!!!Learning how to trim a slice of bytes@@@@"), "!@")
+	res3 := bytes.Trim([]byte("^^Geek&&"), "$")
+
+	// Display the results
+	fmt.Printf("Final Slice:\n")
+	fmt.Printf("\nSlice 1: %s", res1)
+	fmt.Printf("\nSlice 2: %s", res2)
+	fmt.Printf("\nSlice 3: %s", res3)
+
+	slice_1 := []byte{'!', '!', 'G', 'e', 'e', 'k', 's',
+		'f', 'o', 'r', 'G', 'e', 'e', 'k', 's', '#', '#'}
+
+	slice_2 := []byte{'A', 'p', 'p', 'l', 'e'}
+
+	slice_3 := []byte{'%', 'g', '%', 'e', '%', 'e',
+		'%', 'k', '%', 's', '%'}
+
+	res_1 := bytes.Split(slice_1, []byte("eek"))
+	res_2 := bytes.Split(slice_2, []byte(""))
+	res_3 := bytes.Split(slice_3, []byte("%"))
+
+	// Display the results
+	fmt.Printf("\n\nAfter splitting:")
+	fmt.Printf("\nSlice 1: %s", res_1)
+	fmt.Printf("\nSlice 2: %s", res_2)
+	fmt.Printf("\nSlice 3: %s", res_3)
 }
