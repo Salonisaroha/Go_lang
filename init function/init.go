@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 )
-
+// Init function always execute before main function
 func init() {
 	fmt.Println("Welcome to init function")
 }
