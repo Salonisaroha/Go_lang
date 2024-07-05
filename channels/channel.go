@@ -1,7 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
+func portal1(chanel1 chan string) {
+	time.Sleep(1 * time.Second)
+	chanel1 <- "Welcome to channel 1"
+}
+
+func portal2(chanel2 chan string) {
+	time.Sleep(1 * time.Second)
+	chanel2 <- "welcome to channel 2"
+}
 func produce(ch chan<- int) {
 	for i := 1; i <= 5; i++ {
 		ch <- i
@@ -96,4 +108,21 @@ func main() {
 	math := make(chan int)
 	go sum(arr, math)
 	fmt.Println(<-math)
+
+	R1 := make(chan string)
+	R2 := make(chan string)
+
+	go portal1(R1)
+	go portal2(R2)
+
+	select {
+
+	// case 1 for portal 1
+	case op1 := <-R1:
+		fmt.Println(op1)
+
+	// case 2 for portal 2
+	case op2 := <-R2:
+		fmt.Println(op2)
+	}
 }
