@@ -115,7 +115,7 @@ func main() {
 	go portal1(R1)
 	go portal2(R2)
 
-	select {
+	select { // select statement wait till their sleep time, if portal 1 wake up before portal2 then it will print portal 1 data.
 
 	// case 1 for portal 1
 	case op1 := <-R1:
